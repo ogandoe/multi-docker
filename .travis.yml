@@ -10,14 +10,14 @@ script:
   - docker run -e CI=true ogandoe/react-test npm run test
 
 after_success:
-  - docker build -t ogandoe/multi-client  ./client
-  - docker build -t ogandoe/multi-nginx ./nginx
-  - docker build -t ogandoe/multi-server  ./server
-  - docker build -t ogandoe/multi-worker  ./worker
+  - docker build -t ogandoe/eorepo:multi-client  ./client
+  - docker build -t ogandoe/eorepo:multi-nginx ./nginx
+  - docker build -t ogandoe/eorepo:multi-server  ./server
+  - docker build -t ogandoe/eorepo:multi-worker  ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password_stdin
-  - docker push ogandoe/multi-client
-  - docker push ogandoe/multi-nginx
-  - docker push ogandoe/multi-server
-  - docker push ogandoe/multi-worker
+  - docker push ogandoe/eorepo:multi-client
+  - docker push ogandoe/eorepo:multi-nginx
+  - docker push ogandoe/eorepo:multi-server
+  - docker push ogandoe/eorepo:multi-worker
 
 #comentario
