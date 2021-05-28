@@ -20,15 +20,14 @@ after_success:
   - docker push ogandoe/multi-server
   - docker push ogandoe/multi-worker
 
-
-
-
-  # - docker build -t ogandoe/eorepo:multi-client  ./client
-  # - docker build -t ogandoe/eorepo:multi-nginx ./nginx
-  # - docker build -t ogandoe/eorepo:multi-server  ./server
-  # - docker build -t ogandoe/eorepo:multi-worker  ./worker
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # - docker push ogandoe/eorepo:multi-client
-  # - docker push ogandoe/eorepo:multi-nginx
-  # - docker push ogandoe/eorepo:multi-server
-  # - docker push ogandoe/eorepo:multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: sa-east-1
+  app: multi-docker
+  env: Multidocker-env
+  bucket_name: elasticbeanstalk-sa-east-1-347061874496
+  bucket_path: docker-multi-docker
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
